@@ -1,5 +1,12 @@
+import { Outlet } from 'react-router-dom';
+
 const MoviesPage = () => {
-  return <div>MoviesPage</div>;
+  return (
+    <>
+      <div>Movies</div>
+      <Outlet />
+    </>
+  );
 };
 
 export default MoviesPage;
