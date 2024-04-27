@@ -1,9 +1,23 @@
 import { Outlet } from 'react-router-dom';
+import css from './MoviesPage.module.css';
 
 const MoviesPage = () => {
   return (
     <>
-      <div>Movies</div>
+      <div>
+        <form className={css['search-form']}>
+          <input
+            className={css['search-imput']}
+            name="search"
+            type="text"
+            autoComplete="off"
+            placeholder="Search movies"
+          />
+          <button type="submit" className={css['search-button-submit']}>
+            Search
+          </button>
+        </form>
+      </div>
       <Outlet />
     </>
   );

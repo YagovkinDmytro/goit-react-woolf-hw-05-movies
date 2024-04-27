@@ -3,8 +3,8 @@ import Navigation from 'components/Navigation/Navigation';
 import HomePage from 'pages/HomePage/HomePage';
 import MoviesPage from 'pages/MoviesPage/MoviesPage';
 import MoviesDetailsPage from 'pages/MovieDetailsPage/MoviesDetailsPage';
-import Cast from 'components/Cast/Cast';
-import Reviews from 'components/Reviews/Reviews';
+import CastPage from 'pages/CastPage/CastPage';
+import ReviewsPage from 'pages/ReviewsPage/ReviewsPage';
 
 const App = () => {
   return (
@@ -14,8 +14,8 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="movies" element={<MoviesPage />}>
             <Route path="/movies/:movieId" element={<MoviesDetailsPage />} />
-            <Route path="/movies/:movieId/cast" element={<Cast />} />
-            <Route path="/movies/:movieId/reviews" element={<Reviews />} />
+            <Route path="/movies/:movieId/cast" element={<CastPage />} />
+            <Route path="/movies/:movieId/reviews" element={<ReviewsPage />} />
           </Route>
         </Route>
       </Routes>
