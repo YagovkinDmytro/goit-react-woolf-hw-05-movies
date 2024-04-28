@@ -28,7 +28,7 @@ const MoviesList = () => {
       <ul>
         {moviesData.map(({ id, title }) => (
           <li className={css['moviesList-item']} key={id}>
-            <Link to="">{title}</Link>
+            <Link to="/movies/:movieId">{title}</Link>
           </li>
         ))}
       </ul>

@@ -1,5 +1,4 @@
-import { Outlet } from 'react-router-dom';
-import css from './MoviesPage.module.css';
+import css from './Movies.module.css';
 
 const MoviesPage = () => {
   return (
@@ -18,7 +17,6 @@ const MoviesPage = () => {
           </button>
         </form>
       </div>
-      <Outlet />
     </>
   );
 };

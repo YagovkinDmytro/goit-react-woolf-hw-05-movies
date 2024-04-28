@@ -1,23 +1,23 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Navigation from 'components/Navigation/Navigation';
-import HomePage from 'pages/HomePage/HomePage';
-import MoviesPage from 'pages/MoviesPage/MoviesPage';
-import MoviesDetailsPage from 'pages/MovieDetailsPage/MoviesDetailsPage';
-import CastPage from 'pages/CastPage/CastPage';
-import ReviewsPage from 'pages/ReviewsPage/ReviewsPage';
+import Home from 'pages/Home/Home';
+import Movies from 'pages/Movies/Movies';
+import MoviesDetails from 'pages/MovieDetails/MoviesDetails';
+import Cast from 'pages/Cast/Cast';
+import Reviews from 'pages/Reviews/Reviews';
 
 const App = () => {
   return (
     <>
       <Routes>
         <Route path="/" element={<Navigation />}>
-          <Route index element={<HomePage />} />
-          <Route path="movies" element={<MoviesPage />}>
-            <Route path="/movies/:movieId" element={<MoviesDetailsPage />} />
-            <Route path="/movies/:movieId/cast" element={<CastPage />} />
-            <Route path="/movies/:movieId/reviews" element={<ReviewsPage />} />
-          </Route>
+          <Route index element={<Home />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="/movies/:movieId" element={<MoviesDetails />} />
+          <Route path="/movies/:movieId/cast" element={<Cast />} />
+          <Route path="/movies/:movieId/reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </>
   );
