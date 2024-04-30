@@ -8,7 +8,7 @@ const MoviesList = ({ moviesData, idMovie }) => {
     <div>
       <ul>
         {moviesData.map(({ id, title }) => (
-          <li className={css['moviesList-item']} key={id} idMovie={id}>
+          <li className={css['moviesList-item']} key={id}>
             <Link to="/movies/:movieId">{title}</Link>
           </li>
         ))}

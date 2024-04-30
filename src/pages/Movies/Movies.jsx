@@ -1,23 +1,18 @@
+import SearchForm from 'components/SearchForm/SearchForm';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import css from './Movies.module.css';
 
 const MoviesPage = () => {
+  const [searchParams, setSearchParams] = useState('');
+
+  const handleSubmit = value => {
+    setSearchParams({ query: value });
+  };
+
+  console.log(searchParams);
   return (
     <>
-      <div>
-        <form className={css['search-form']}>
-          <input
-            className={css['search-imput']}
-            name="search"
-            type="text"
-            autoComplete="off"
-            placeholder="Search movies"
-          />
-          <button type="submit" className={css['search-button-submit']}>
-            Search
-          </button>
-        </form>
-      </div>
+      <SearchForm handleSubmit={handleSubmit}></SearchForm>
       <Outlet />
     </>
   );
