@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom';
 import css from './Movies.module.css';
 
 const MoviesPage = () => {
@@ -17,6 +18,7 @@ const MoviesPage = () => {
           </button>
         </form>
       </div>
+      <Outlet />
     </>
   );
 };

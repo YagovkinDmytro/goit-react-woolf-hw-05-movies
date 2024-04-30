@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const MoviesDetails = () => {
   return (
@@ -9,11 +9,11 @@ const MoviesDetails = () => {
         <p>text</p>
         <h3>Title 2</h3>
         <p>text</p>
-        <h4>Title 4</h4>
+        <h4>Title 3</h4>
         <p>text</p>
       </div>
       <div>
-        <h5>Title 5</h5>
+        <h5>Title 4</h5>
         <ul>
           <li>
             <NavLink to="/movies/:movieId/cast">Cast</NavLink>
@@ -23,6 +23,7 @@ const MoviesDetails = () => {
           </li>
         </ul>
       </div>
+      <Outlet />
     </>
   );
 };
