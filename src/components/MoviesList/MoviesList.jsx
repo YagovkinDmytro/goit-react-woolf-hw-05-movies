@@ -3,7 +3,7 @@
 import { Link } from 'react-router-dom';
 import css from './MoviesList.module.css';
 
-const MoviesList = ({ moviesData, idMovie }) => {
+const MoviesList = ({ moviesData }) => {
   return (
     <div>
       <ul>

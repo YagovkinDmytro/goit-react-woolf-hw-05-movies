@@ -15,14 +15,15 @@ export const getMoviesApi = async () => {
   return data;
 };
 
-// export const getMovieDetails = async () => {
-//   const andPointDetails = `/movie/${movie_id}?`;
-//   const searchParams = new URLSearchParams({
-//     language: 'en-US',
-//     api_key: API_KEY,
-//   });
-//   const { data } = await axios.get(
-//     `${BASE_URL}${andPointDetails}${searchParams}`
-//   );
-//   return data;
-// };
+export const getMovieDetails = async query => {
+  const andPointDetails = '/search/movie?';
+  const searchParams = new URLSearchParams({
+    query,
+    language: 'en-US',
+    api_key: API_KEY,
+  });
+  const { data } = await axios.get(
+    `${BASE_URL}${andPointDetails}${searchParams}`
+  );
+  return data;
+};

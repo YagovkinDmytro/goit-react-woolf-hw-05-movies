@@ -26,7 +26,6 @@ const HomePage = () => {
     getTrandingMovies();
   }, []);
 
-  console.log(moviesData);
   return (
     <div className={css['home-page']}>
       {isLoading && <Loader></Loader>}
