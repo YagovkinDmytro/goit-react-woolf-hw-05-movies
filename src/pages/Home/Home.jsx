@@ -1,5 +1,5 @@
 import MoviesList from 'components/MoviesList/MoviesList';
-import { getMoviesApi } from 'api/dataMovies';
+import { getMoviesTrendingAPI } from 'api/dataMovies';
 import css from './Home.module.css';
 import { useEffect, useState } from 'react';
 import Loader from 'components/Loader/Loader';
@@ -14,7 +14,7 @@ const HomePage = () => {
       try {
         setIsLoading(true);
         setErrorMessage('');
-        const data = await getMoviesApi();
+        const data = await getMoviesTrendingAPI();
         const { results } = data;
         setMoviesData(results);
       } catch (error) {

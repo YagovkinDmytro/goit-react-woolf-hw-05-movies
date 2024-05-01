@@ -1,28 +1,40 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { getMovieDetailsAPI } from 'api/dataMovies';
+import Loader from 'components/Loader/Loader';
+import MoviesInfo from 'components/MoviesInfo/MoviesInfo';
+import { useEffect, useState } from 'react';
+import { Outlet, useParams } from 'react-router-dom';
 
 const MoviesDetails = () => {
+  const [moviesData, setMoviesData] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    if (!movieId) {
+      return;
+    }
+
+    const getMoviesDetails = async () => {
+      try {
+        setIsLoading(true);
+        setErrorMessage('');
+        const data = await getMovieDetailsAPI(movieId);
+        setMoviesData(data);
+      } catch (error) {
+        setErrorMessage(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getMoviesDetails();
+  }, [movieId]);
+
   return (
     <>
-      <div>
-        <img src="" alt="" />
-        <h2>Title 1</h2>
-        <p>text</p>
-        <h3>Title 2</h3>
-        <p>text</p>
-        <h4>Title 3</h4>
-        <p>text</p>
-      </div>
-      <div>
-        <h5>Title 4</h5>
-        <ul>
-          <li>
-            <NavLink to="/movies/:movieId/cast">Cast</NavLink>
-          </li>
-          <li>
-            <NavLink to="/movies/:movieId/reviews">Reviews</NavLink>
-          </li>
-        </ul>
-      </div>
+      {isLoading && <Loader></Loader>}
+      <MoviesInfo moviesData={moviesData}></MoviesInfo>
+      {errorMessage && <h1>{errorMessage}</h1>}
       <Outlet />
     </>
   );

@@ -1,4 +1,4 @@
-import { getMovieDetails } from 'api/dataMovies';
+import { getMovieSearchAPI } from 'api/dataMovies';
 import Loader from 'components/Loader/Loader';
 import MoviesList from 'components/MoviesList/MoviesList';
 import SearchForm from 'components/SearchForm/SearchForm';
@@ -7,20 +7,22 @@ import { Outlet, useSearchParams } from 'react-router-dom';
 
 const MoviesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [moviesData, setMoviesData] = useState([]);
+  const [moviesData, setMoviesData] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const query = searchParams.get('query');
 
   useEffect(() => {
+    const query = searchParams.get('query');
+
     if (!query) {
       return;
     }
+
     const getSearchMovies = async () => {
       try {
         setIsLoading(true);
         setErrorMessage('');
-        const data = await getMovieDetails(query);
+        const data = await getMovieSearchAPI(query);
         const { results } = data;
         setMoviesData(results);
       } catch (error) {
@@ -30,7 +32,7 @@ const MoviesPage = () => {
       }
     };
     getSearchMovies();
-  }, [searchParams, query]);
+  }, [searchParams]);
 
   const handleSubmit = value => {
     setSearchParams({ query: value });
@@ -40,7 +42,7 @@ const MoviesPage = () => {
     <>
       {isLoading && <Loader></Loader>}
       <SearchForm handleSubmit={handleSubmit}></SearchForm>
-      {query && <MoviesList moviesData={moviesData}></MoviesList>}
+      {moviesData && <MoviesList moviesData={moviesData}></MoviesList>}
       {errorMessage && <h1>{errorMessage}</h1>}
       <Outlet />
     </>
