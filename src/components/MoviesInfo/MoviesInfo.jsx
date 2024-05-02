@@ -1,19 +1,19 @@
-import { NavLink, useParams } from 'react-router-dom';
+import { useRef } from 'react';
+import { Link, NavLink, useLocation, useParams } from 'react-router-dom';
 
 const MoviesInfo = ({ moviesData }) => {
-  const { original_title, vote_average, poster_path, overview, genres } =
-    moviesData;
-
-  console.log(moviesData);
-
+  const { title, vote_average, poster_path, overview, genres } = moviesData;
   const { movieId } = useParams();
-
   const defaultImg =
     'https://glavcom.ua/img/article/9139/95_main-v1678685008.jpg';
+
+  const location = useLocation();
+  const goBack = useRef(location.state?.from || '/');
 
   return (
     <>
       <div>
+        <Link to={goBack.current}>Go back</Link>
         <img
           src={
             poster_path
@@ -23,10 +23,10 @@ const MoviesInfo = ({ moviesData }) => {
           width={250}
           alt="poster"
         />
-        <h2>{original_title}</h2>
+        <h2>{title}</h2>
         <p>User Score: {Math.round(vote_average * 10)}%</p>
         <h3>Overview</h3>
-        <p>{overview}</p>
+        {overview !== '' ? <p>{overview}</p> : <p>N/A</p>}
         <h4>Genres</h4>
         <div>
           {genres && genres.length > 0 ? (

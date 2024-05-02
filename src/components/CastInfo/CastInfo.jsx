@@ -1,5 +1,4 @@
 const CastInfo = ({ castData }) => {
-  console.log(castData);
   const defaultImg =
     'https://glavcom.ua/img/article/9139/95_main-v1678685008.jpg';
   return castData && castData.length > 0 ? (
