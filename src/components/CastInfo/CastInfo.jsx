@@ -1,7 +1,8 @@
 const CastInfo = ({ castData }) => {
+  console.log(castData);
   const defaultImg =
     'https://glavcom.ua/img/article/9139/95_main-v1678685008.jpg';
-  return (
+  return castData && castData.length > 0 ? (
     <ul>
       {castData.map(({ profile_path, original_name, character, id }) => {
         return (
@@ -21,6 +22,8 @@ const CastInfo = ({ castData }) => {
         );
       })}
     </ul>
+  ) : (
+    <p>N/A</p>
   );
 };
 
